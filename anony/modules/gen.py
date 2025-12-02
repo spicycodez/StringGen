@@ -22,7 +22,7 @@ async def listen(cq: types.CallbackQuery, text: str, timeout: int = 120) -> str:
 @app.on_callback_query(filters.regex("generate"))
 async def _generate(_, cq: types.CallbackQuery):
     await cq.answer()
-    await cq.message.reply_text("Please choose which session you want to generate:", reply_markup=buttons.gen_key())
+    await cq.message.reply_text("<b>» ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ғᴏʀ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ :</b>", reply_markup=buttons.gen_key())
 
 @app.on_callback_query(filters.regex(r"(pyrogram|telethon)"))
 async def _gen_session(_, cq: types.CallbackQuery):
