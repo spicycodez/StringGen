@@ -29,20 +29,20 @@ async def _gen_session(_, cq: types.CallbackQuery):
     sgen = cq.data
     pyrogram = sgen == "pyrogram"
     await cq.answer()
-    await cq.message.reply_text(f"Starting {sgen} session generator...")
+    await cq.message.reply_text(f"» ᴛʀʏɪɴɢ ᴛᴏ sᴛᴀʀᴛ {sgen} sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ...")
 
-    api_id = await listen(cq, "Please enter your <b>api id</b> to proceed:")
+    api_id = await listen(cq, "» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴀᴘɪ ɪᴅ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :")
     try:
         api_id = int(api_id)
     except ValueError:
-        return await cq.message.reply_text("The <b>api id</b> you've sent is invalid.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴛʜᴇ ᴀᴘɪ ɪᴅ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
 
-    api_hash = await listen(cq, "Please enter your <b>api hash</b> to proceed:")
+    api_hash = await listen(cq, "» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴀᴘɪ ʜᴀsʜ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :")
     if len(api_hash) < 30:
-        return await cq.message.reply_text("The <b>api hash</b> you've sent is invalid.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴛʜᴇ ᴀᴘɪ ʜᴀsʜ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
 
-    phone_number = await listen(cq, "Please enter your <b>phone number</b> to proceed:")
-    await cq.message.reply_text("Trying to send otp at the given number...")
+    phone_number = await listen(cq, "» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ :")
+    await cq.message.reply_text("» ᴛʀʏɪɴɢ ᴛᴏ sᴇɴᴅ ᴏᴛᴩ ᴀᴛ ᴛʜᴇ ɢɪᴠᴇɴ ɴᴜᴍʙᴇʀ...")
     client = (
         Client(name="Anony", api_id=api_id, api_hash=api_hash, in_memory=True)
         if pyrogram
@@ -59,15 +59,15 @@ async def _gen_session(_, cq: types.CallbackQuery):
         await asyncio.sleep(1)
 
     except errors.FloodWait as f:
-        return await cq.message.reply_text(f"Failed to send code for session generation.\n\nPlease wait for {f.value} seconds and try again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text(f"» ғᴀɪʟᴇᴅ ᴛᴏ sᴇɴᴅ ᴄᴏᴅᴇ ғᴏʀ ʟᴏɢɪɴ.\n\nᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ {f.value} sᴇᴄᴏɴᴅs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
     except (errors.ApiIdInvalid, telerror.ApiIdInvalidError):
-        return await cq.message.reply_text("Api id or api hash is invalid.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴀᴘɪ ɪᴅ ᴏʀ ᴀᴘɪ ʜᴀsʜ ɪs ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
     except (errors.PhoneNumberInvalid, telerror.PhoneNumberInvalidError):
-        return await cq.message.reply_text("Phone number invalid.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ ɪɴᴠᴀʟɪᴅ.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
     except Exception as ex:
         return await cq.message.reply_text(f"Error : <code>{str(ex)}</code>")
 
-    otp = await listen(cq, f"Please enter the otp sent to {phone_number}.\n\nIf otp is <code>12345</code>, please send it as <code>1 2 3 4 5</code>", timeout=600)
+    otp = await listen(cq, f"ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ᴛʜᴇ ᴏᴛᴘ sᴇɴᴛ ᴛᴏ {phone_number}.\n\nɪғ ᴏᴛᴩ ɪs <code>12345</code>, ᴩʟᴇᴀsᴇ sᴇɴᴅ ɪᴛ ᴀs <code>1 2 3 4 5</code>", timeout=600)
     otp = otp.replace(" ", "")
     try:
         (
@@ -76,11 +76,11 @@ async def _gen_session(_, cq: types.CallbackQuery):
             else await client.sign_in(phone_number, otp)
         )
     except (errors.PhoneCodeInvalid, telerror.PhoneCodeInvalidError):
-        return await cq.message.reply_text("The otp you've sent is <b>wrong.</b>\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs <b>ᴡʀᴏɴɢ.</b>\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
     except (errors.PhoneCodeExpired, telerror.PhoneCodeExpiredError):
-        return await cq.message.reply_text("The otp you've sent is <b>expired</b>.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+        return await cq.message.reply_text("» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs <b>ᴇxᴩɪʀᴇᴅ.</b>\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
     except (errors.SessionPasswordNeeded, telerror.SessionPasswordNeededError):
-        pwd = await listen(cq, "Please enter your two step verification password to continue:")
+        pwd = await listen(cq, "» ᴘʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴛᴡᴏ sᴛᴇᴘ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ ᴘᴀssᴡᴏʀᴅ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ :")
 
         try:
             (
@@ -89,13 +89,13 @@ async def _gen_session(_, cq: types.CallbackQuery):
                 else await client.sign_in(password=pwd)
             )
         except (errors.PasswordHashInvalid, telerror.PasswordHashInvalidError):
-            return await cq.message.reply_text("The password you've sent is wrong.\n\nPlease start generating session again.", reply_markup=buttons.retry_key())
+            return await cq.message.reply_text("» ᴛʜᴇ ᴩᴀssᴡᴏʀᴅ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ᴡʀᴏɴɢ.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
 
     except Exception as ex:
-         return await cq.message.reply_text(f"Error : <code>{str(ex)}</code>")
+         return await cq.message.reply_text(f"ᴇʀʀᴏʀ : <code>{str(ex)}</code>")
 
     try:
-        txt = "Here is your {0} session\n\n<code>{1}</code>\n\nA session generator bot by <a href={2}>Fallen Association</a>\n☠ <b>Note :</b> Don't share the session with anyone."
+        txt = "ʜᴇʀᴇ ɪs ʏᴏᴜʀ {0} sᴛʀɪɴɢ sᴇssɪᴏɴ\n\n<code>{1}</code>\n\nᴀ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ ʙʏ <a href={2}>Spicy Bots</a>\n☠ <b>ɴᴏᴛᴇ :</b> ᴅᴏɴ'ᴛ sʜᴀʀᴇ ɪᴛ ᴡɪᴛʜ ʏᴏᴜʀ ɢɪʀʟғʀɪᴇɴᴅ."
         if pyrogram:
             string_session = await client.export_session_string()
             await client.send_message(
@@ -104,7 +104,7 @@ async def _gen_session(_, cq: types.CallbackQuery):
                 link_preview_options=types.LinkPreviewOptions(is_disabled=True),
             )
             try:
-                await client.join_chat("FallenAssociation")
+                await client.join_chat("SpicyxNetwork")
             except:
                 pass
         else:
