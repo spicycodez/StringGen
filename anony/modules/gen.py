@@ -15,7 +15,7 @@ async def listen(cq: types.CallbackQuery, text: str, timeout: int = 120) -> str:
         message = await app.listen.Message(filters.text, id=filters.user(cq.from_user.id), timeout=timeout)
         return message.text
     except asyncio.TimeoutError:
-        await cq.message.reply_text("Timed out.\n\nPlease try again.", reply_markup=buttons.retry_key())
+        await cq.message.reply_text("» ᴛɪᴍᴇᴅ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴘʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=buttons.retry_key())
         raise StopPropagation
 
 
