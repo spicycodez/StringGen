@@ -12,8 +12,8 @@ class Inline:
         return self.ikm(
             [
                 [
-                    self.ikb(text=f"Pyrogram v{pv}", callback_data="pyrogram"),
-                    self.ikb(text=f"Telethon v{tv}", callback_data="telethon"),
+                    self.ikb(text=f"ᴩʏʀᴏɢʀᴀᴍ v{pv}", callback_data="pyrogram"),
+                    self.ikb(text=f"ᴛᴇʟᴇᴛʜᴏɴ v{tv}", callback_data="telethon"),
                 ]
             ]
         )
@@ -23,7 +23,7 @@ class Inline:
             [
                 [
                     self.ikb(
-                        text="Saved Messages",
+                        text="sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs",
                         url=f"tg://openmessage?user_id={user_id}",
                     )
                 ]
@@ -32,16 +32,16 @@ class Inline:
 
     def retry_key(self) -> types.InlineKeyboardMarkup:
         return self.ikm(
-            [[self.ikb(text="Try again", callback_data="generate")]]
+            [[self.ikb(text="ᴛʀʏ ᴀɢᴀɪɴ", callback_data="generate")]]
         )
 
     def start_key(self) -> types.InlineKeyboardMarkup:
         return self.ikm(
             [
-                [self.ikb(text="Generate Session", callback_data="generate")],
+                [self.ikb(text="• ɢᴇɴᴇʀᴀᴛᴇ sᴇssɪᴏɴ •", callback_data="generate")],
                 [
-                    self.ikb(text="Support", url=SUPPORT_CHAT),
-                    self.ikb(text="Source", url="https://github.com/AnonymousX1025/StringGenBot"),
+                    self.ikb(text=" ᴄʜᴀɴɴᴇʟ ", url=SUPPORT_CHAT),
+                    self.ikb(text=" sᴏᴜʀᴄᴇ ", url="https://t.me/SpicyxBots"),
                 ],
             ]
         )
