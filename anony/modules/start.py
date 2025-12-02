@@ -5,8 +5,10 @@ from anony import app, buttons, db
 
 @app.on_message(filters.command(["start"]) & filters.private)
 async def f_start(_, m: types.Message):
-    await m.reply_text(
-        text=f"Hey {m.from_user.first_name},\n\nThis is {app.mention},\nAn open source session generator bot.",
-        reply_markup=buttons.start_key(),
+     await message.reply_photo(
+        photo="https://graph.org/file/0c425a271a2caae5d62dc.jpg",
+         has_spoiler = True,
+       caption=f"ʜᴇʏ {message.from_user.first_name},\n\n๏ ᴛʜɪs ɪs {Anony.mention},\nAɴ ᴏᴘᴇɴ sᴏᴜʀᴄᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ ɢᴇɴᴇʀᴀᴛᴏʀ ʙᴏᴛ, ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ ᴛʜᴇ ʜᴇʟᴩ ᴏғ ᴩʏʀᴏɢʀᴀᴍ.",
+        reply_markup=keyboard,
     )
     await db.add_user(m.from_user.id)
